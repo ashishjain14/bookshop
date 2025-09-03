@@ -4,7 +4,7 @@ using { cuid, managed, sap.common.CodeList } from '@sap/cds/common';
 
 entity Books : cuid, managed {
   title      : String(111);
-  descr      : String(1000);
+  descr      : String(1000) @mandatory;
   author     : Association to Authors;
   stock      : Integer;
   price      : Decimal(9,2);
@@ -12,6 +12,10 @@ entity Books : cuid, managed {
   currency_code : String(3); // <-- Add this line
   genre      : Association to Genres on genre.code = genre_code;
   genre_code : String(10); 
+}
+
+annotate Books with{
+  modifiedAt @odata.etag
 }
 
 entity Authors : cuid, managed {
