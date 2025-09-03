@@ -21,6 +21,8 @@ annotate Books with{
 entity Authors : cuid, managed {
   name       : String(111);
   books      : Composition of many Books on books.author = $self;
+  dateOfBirth : Date;
+  dateOfDeath : Date;
 }
 
 entity Orders : cuid, managed {
